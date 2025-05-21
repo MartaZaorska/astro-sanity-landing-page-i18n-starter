@@ -1,0 +1,8 @@
+---
+import DefaultPage from '@/templates/default.astro';
+import pageFetch from '@/utils/page.fetch';
+
+const data = await pageFetch({ slug: '/404', lang: 'pl' });
+---
+
+{data && <DefaultPage {...data} />}
