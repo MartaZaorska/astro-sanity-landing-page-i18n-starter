@@ -36,7 +36,8 @@
   --neutral-200: #efefef;
   --neutral-600: #121212;
   --neutral-700: #000000;
-  --primary-500: #358b48;
+  --primary-500: #383a54;
+  --secondary-500: #694659;
   --error-400: #880015;
   --success-400: #09880b;
 
@@ -183,12 +184,12 @@ h6,
 
 h1,
 .h1 {
-  font-size: clamp(1.625rem, calc(32vw / 7.68), 2rem);
+  font-size: clamp(2.25rem, calc(48vw / 7.68), 3rem);
 }
 
 h2,
 .h2 {
-  font-size: clamp(1.375rem, calc(28vw / 7.68), 1.75rem);
+  font-size: clamp(1.9rem, calc(36vw / 7.68), 2.25rem);
 }
 
 h3,
