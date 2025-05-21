@@ -211,10 +211,6 @@ const svgContent = annotation?.icon ? await imageToInlineSvg(annotation.icon) : 
         transform 400ms 0ms,
         visibility 1ms 400ms;
 
-      @supports (height: 100svh) {
-        height: 100svh;
-      }
-
       @media (min-width: 48rem) {
         background-color: transparent;
         position: relative;
