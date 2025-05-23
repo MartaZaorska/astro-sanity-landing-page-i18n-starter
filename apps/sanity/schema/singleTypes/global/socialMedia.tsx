@@ -50,7 +50,7 @@ export default defineType({
       language: 'language',
     },
     prepare: ({ language }) => {
-      const title = useTranslations(language)('socialMedia');
+      const title = language ? useTranslations(language)('socialMedia') : 'Social media';
       return getLanguagePreview({ title, language });
     },
   },

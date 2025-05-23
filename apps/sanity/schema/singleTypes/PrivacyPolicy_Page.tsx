@@ -1,31 +1,14 @@
-import { LockKeyholeIcon, FileTextIcon, SearchIcon } from 'lucide-react';
-import { defineField, defineType } from 'sanity';
+import { defineField } from 'sanity';
+import { LockKeyholeIcon } from 'lucide-react';
 import { PortableText } from '../ui/PortableText';
-import { defineSlugForDocument } from '../../utils/define-slug-for-document';
-import { getLanguagePreview } from '../../utils/get-language-preview';
+import { defineSingletonPage } from '../../templates/singletonPage';
 
-const name = 'PrivacyPolicy_Page';
-const title = 'Privacy Policy';
-
-export default defineType({
-  name,
-  title,
+export default defineSingletonPage({
+  name: 'PrivacyPolicy_Page',
+  title: 'Privacy Policy',
   icon: LockKeyholeIcon,
-  type: 'document',
-  options: { documentPreview: true },
-  fields: [
-    defineField({
-      name: 'language',
-      type: 'string',
-      readOnly: true,
-      hidden: true,
-    }),
-    ...defineSlugForDocument({
-      slugs: {
-        pl: '/polityka-prywatnosci',
-        en: '/en/privacy-policy',
-      },
-    }).map(field => ({ ...field, group: 'content' })),
+  withComponents: false,
+  additionalFields: [
     defineField({
       name: 'heading',
       type: 'Heading',
@@ -50,30 +33,5 @@ export default defineType({
         group: 'content',
       },
     }),
-    defineField({
-      name: 'seo',
-      type: 'seo',
-      title: 'SEO',
-      group: 'seo',
-    }),
   ],
-  groups: [
-    {
-      name: 'content',
-      title: 'Content',
-      icon: () => <FileTextIcon size={18} />,
-    },
-    {
-      name: 'seo',
-      title: 'SEO',
-      icon: () => <SearchIcon size={18} />,
-    },
-  ],
-  preview: {
-    select: {
-      language: 'language',
-      name: 'name',
-    },
-    prepare: ({ name, language }) => getLanguagePreview({ title: name, language }),
-  },
 });

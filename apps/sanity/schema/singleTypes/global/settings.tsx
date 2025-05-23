@@ -413,7 +413,7 @@ export default defineType({
       language: 'language',
     },
     prepare: ({ language }) => {
-      const title = useTranslations(language)('settings');
+      const title = language ? useTranslations(language)('settings') : 'Site settings';
       return getLanguagePreview({ title, language });
     },
   },

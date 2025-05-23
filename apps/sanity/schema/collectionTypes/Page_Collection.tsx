@@ -2,14 +2,13 @@ import { PanelsTopLeft, FileTextIcon, SearchIcon, SettingsIcon } from 'lucide-re
 import { defineField, defineType } from 'sanity';
 import { defineSlugForDocument } from '../../utils/define-slug-for-document';
 import { getNavigationFields } from '../singleTypes/global/navigation';
-
-const icon = PanelsTopLeft;
+import { localizedPaths } from '../../structure/languages';
 
 export default defineType({
   name: 'page',
   title: 'Landing',
   type: 'document',
-  icon,
+  icon: PanelsTopLeft,
   options: { documentPreview: true },
   fields: [
     defineField({
@@ -24,7 +23,7 @@ export default defineType({
       description: 'Override global settings specifically for this page',
       type: 'object',
       group: 'localSettings',
-      options: { collapsible: true },
+      options: { collapsible: true, collapsed: true },
       fields: [
         defineField({
           name: 'email',
@@ -53,11 +52,8 @@ export default defineType({
       group: 'content',
     }),
     ...defineSlugForDocument({
+      prefixes: localizedPaths['page'],
       source: 'name',
-      prefixes: {
-        pl: '',
-        en: '/en',
-      },
       checkSlugMatch: false,
     }).map(field => ({ ...field, group: 'content' })),
     defineField({
@@ -92,14 +88,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'seo.title',
+      title: 'name',
       slug: 'slug.current',
     },
     prepare({ title, slug }) {
       return {
         title,
         subtitle: slug,
-        icon,
+        icon: PanelsTopLeft,
       };
     },
   },

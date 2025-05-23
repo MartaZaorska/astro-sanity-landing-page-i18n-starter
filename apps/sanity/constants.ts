@@ -17,7 +17,7 @@ export const PREVIEW_DOMAIN: string = '';
  * Unique ID used to identify and connect to the specific Sanity project.
  * @constant
  */
-export const PROJECT_ID: string = 'da7uwv1x';
+export const PROJECT_ID: string = '35mq6xci';
 
 /**
  * Sanity dataset name.
@@ -31,14 +31,14 @@ export const DATASET: string = 'production';
  * Specifies which version of the Sanity API to use for queries and mutations.
  * @constant
  */
-export const API_VERSION: string = '2024-05-21';
+export const API_VERSION: string = '2024-05-23';
 
 /**
  * Studio host identifier.
  * Used to identify the Sanity Studio instance in the application.
  * @constant
  */
-export const STUDIO_HOST: string = 'starter-landing-page-i18n-sanity-studio';
+export const STUDIO_HOST: string = 'starter-landing-page-i18n-mz-sanity-studio';
 
 /**
  * Application title.

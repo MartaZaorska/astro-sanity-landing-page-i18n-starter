@@ -2,14 +2,10 @@ import { MessageCircleQuestionIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { toPlainText } from '../../utils/to-plain-text';
 
-const name = 'Faq_Collection';
-const title = 'FAQ Collection';
-const icon = MessageCircleQuestionIcon;
-
 export default defineType({
-  name,
-  title,
-  icon,
+  name: 'Faq_Collection',
+  title: 'FAQ Collection',
+  icon: MessageCircleQuestionIcon,
   type: 'document',
   fields: [
     defineField({
@@ -37,9 +33,9 @@ export default defineType({
       answer: 'answer',
     },
     prepare: ({ question, answer }) => ({
-      title: toPlainText(question),
-      subtitle: toPlainText(answer),
-      icon,
+      title: question ? toPlainText(question) : 'FAQ Item',
+      subtitle: answer ? toPlainText(answer) : '',
+      icon: MessageCircleQuestionIcon,
     }),
   },
 });

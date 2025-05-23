@@ -3,7 +3,7 @@ import { defineField } from 'sanity';
 import { sectionPreview } from '../../utils/section-preview';
 import { toPlainText } from '../../utils/to-plain-text';
 import { filterReferences } from '../../utils/filter-references';
-//import { validateReferenceLanguage } from '../../utils/validate-reference-language';
+import { validateReferenceLanguage } from '../../utils/validate-reference-language';
 import sectionId from '../ui/sectionId';
 
 const name = 'Faq';
@@ -35,7 +35,7 @@ export default defineField({
           options: {
             filter: filterReferences({ checkUnique: true, includeLanguage: true }),
           },
-          //validation: Rule => Rule.custom(validateReferenceLanguage),
+          validation: Rule => Rule.custom(validateReferenceLanguage),
         }),
       ],
       validation: Rule => Rule.required().min(3).max(10).unique(),

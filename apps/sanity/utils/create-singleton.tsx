@@ -1,5 +1,5 @@
-import { PenIcon, EyeIcon, LanguagesIcon } from 'lucide-react';
 import type { StructureBuilder } from 'sanity/structure';
+import { PenIcon, EyeIcon } from 'lucide-react';
 import { schemaTypes } from '../structure/schema-types';
 import { Preview } from './preview';
 
@@ -15,6 +15,7 @@ export const createSingleton = (S: StructureBuilder, name: string) => {
     options: { documentPreview?: boolean };
     fields?: Array<{ name: string; type: string }>;
   };
+
   const documentPreview = options?.documentPreview ?? false;
   const isInternationalized = fields.some(field => field.name === 'language');
 

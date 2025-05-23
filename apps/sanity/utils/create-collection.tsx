@@ -1,8 +1,9 @@
-import { PenIcon, EyeIcon, LanguagesIcon } from 'lucide-react';
 import type { StructureBuilder } from 'sanity/structure';
+import { PenIcon, EyeIcon } from 'lucide-react';
 import { schemaTypes } from '../structure/schema-types';
 import { Preview } from './preview';
 import { LANGUAGES } from '../structure/languages';
+import { getLanguageIcon } from './get-language-preview';
 import { API_VERSION } from '../constants';
 
 export const createCollection = (S: StructureBuilder, name: string) => {
@@ -17,6 +18,7 @@ export const createCollection = (S: StructureBuilder, name: string) => {
     options: { documentPreview?: boolean };
     fields?: Array<{ name: string; type: string }>;
   };
+
   const documentPreview = options?.documentPreview ?? false;
   const isInternationalized = fields.some(field => field.name === 'language');
 
@@ -47,7 +49,7 @@ export const createCollection = (S: StructureBuilder, name: string) => {
               LANGUAGES.map(lang =>
                 S.listItem()
                   .title(`${lang.title}`)
-                  .icon(() => <LanguagesIcon size={18} />)
+                  .icon(() => getLanguageIcon(lang.id))
                   .child(
                     S.documentTypeList(name)
                       .title(`${title} (${lang.title})`)

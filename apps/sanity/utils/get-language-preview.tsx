@@ -1,19 +1,15 @@
-import { LanguagesIcon } from 'lucide-react';
+import { type Language, useTranslations } from '../structure/languages';
 
-type Props = {
-  language: 'pl' | 'en';
-  title: string;
-};
+export const getLanguageIcon = (language: Language) => (
+  <span style={{ textTransform: 'uppercase', fontSize: '0.8rem', opacity: '0.8' }}>
+    {language || ''}
+  </span>
+);
 
-const LABELS = {
-  pl: '🇵🇱 Polish',
-  en: '🇬🇧 English',
-};
-
-export const getLanguagePreview = ({ language, title }: Props) => {
+export const getLanguagePreview = ({ language, title }: { language: Language; title: string }) => {
   return {
     title,
-    subtitle: LABELS[language],
-    media: () => <LanguagesIcon size={18} />,
+    subtitle: language ? useTranslations(language)('label') : '',
+    media: () => getLanguageIcon(language),
   };
 };

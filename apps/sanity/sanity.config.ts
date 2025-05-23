@@ -6,8 +6,9 @@ import { assist } from '@sanity/assist';
 import { documentInternationalization } from '@sanity/document-internationalization';
 import { structure } from './structure';
 import { i18nTypes, schemaTypes, singletonActions, singletonTypes } from './structure/schema-types';
-import { TITLE, PROJECT_ID, DATASET, API_VERSION } from './constants';
 import { LANGUAGES } from './structure/languages';
+import { TITLE, PROJECT_ID, DATASET, API_VERSION } from './constants';
+import { documentInternationalizationCallback } from './utils/document-internationalization-callback';
 
 export default defineConfig({
   name: 'default',
@@ -24,6 +25,7 @@ export default defineConfig({
     documentInternationalization({
       supportedLanguages: LANGUAGES,
       schemaTypes: i18nTypes,
+      callback: documentInternationalizationCallback,
     }),
     assist({
       translate: {
@@ -37,7 +39,6 @@ export default defineConfig({
     types: schemaTypes,
     templates: templates => templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
   },
-
   document: {
     actions: (input, context) =>
       singletonTypes.has(context.schemaType)
