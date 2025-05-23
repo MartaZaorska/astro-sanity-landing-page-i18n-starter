@@ -43,16 +43,16 @@ const translations = {
     },
     messageTemplate: {
       emailLabel: 'Adres e-mail',
-      fromLabel: 'Formularz kontaktowy NAZWA',
-      subject: 'Wiadomość z formularza kontaktowego NAZWA',
+      fromLabel: 'Formularz kontaktowy NAME',
+      subject: 'Wiadomość z formularza kontaktowego NAME',
       userConfirmationHTMLTemplate: `
         <p>Witaj!</p>
-        <p>Dziękujemy za skontaktowanie się z NAZWA. Otrzymaliśmy Twoją wiadomość i wkrótce się z Tobą skontaktujemy.</p>
+        <p>Dziękujemy za skontaktowanie się z NAME. Otrzymaliśmy Twoją wiadomość i wkrótce się z Tobą skontaktujemy.</p>
         <br />
         <p>Z poważaniem,</p>
-        <p>Zespół <b>NAZWA</b></p> 
+        <p>Zespół <b>NAME</b></p> 
       `,
-      userConfirmationSubject: 'Dziękujemy za kontakt z NAZWA',
+      userConfirmationSubject: 'Dziękujemy za kontakt z NAME',
     },
     cookieConsent: {
       title: 'Korzystając ze strony zgadzasz się na użycie plików cookie',
@@ -144,20 +144,21 @@ const translations = {
     },
     messageTemplate: {
       emailLabel: 'E-mail',
-      fromLabel: 'NAZWA Contact Form',
-      subject: 'Message from contact form NAZWA',
+      fromLabel: 'NAME Contact Form',
+      subject: 'Message from contact form NAME',
       userConfirmationHTMLTemplate: `
         <p>Hello!</p>
-        <p>Thank you for contacting NAZWA. We have received your message and will contact you soon.</p>
+        <p>Thank you for contacting NAME. We have received your message and will contact you soon.</p>
         <br />
         <p>Best regards,</p>
-        <p>NAZWA</p>
+        <p>NAME</p>
       `,
-      userConfirmationSubject: 'Thank you for contacting NAZWA',
+      userConfirmationSubject: 'Thank you for contacting NAME',
     },
     cookieConsent: {
       title: 'By using this site, you agree to the use of cookies',
-      description: 'We use cookies to ensure our website works properly and tailor it to your needs.',
+      description:
+        'We use cookies to ensure our website works properly and tailor it to your needs.',
       learnMore: 'Learn more',
       detailsIntro: 'Below you will find information about what data we collect and why.',
       buttons: {

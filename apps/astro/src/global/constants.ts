@@ -75,4 +75,4 @@ export const DATASET: string = 'production';
  * @constant
  * @type {string}
  */
-export const API_VERSION: string = '2025-04-29';
+export const API_VERSION: string = '2025-05-23';
