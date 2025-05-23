@@ -8,8 +8,13 @@ import { REGEX } from '@/global/constants';
 export default function Form({
   children,
   lang,
+  privacyPolicySlug,
   ...props
-}: { children: React.ReactNode; lang: Language } & React.FormHTMLAttributes<HTMLFormElement>) {
+}: {
+  children: React.ReactNode;
+  lang: Language;
+  privacyPolicySlug: string;
+} & React.FormHTMLAttributes<HTMLFormElement>) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const {
     register,
@@ -75,7 +80,7 @@ export default function Form({
       >
         {formData.legal.labelFirst}{' '}
         <a
-          href={formData.legal.link}
+          href={privacyPolicySlug}
           target='_blank'
           rel='noopener noreferrer'
           className='link'

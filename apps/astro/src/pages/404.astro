@@ -1,8 +1,9 @@
 ---
+import { getLangPrefix } from '@/global/languages';
 import DefaultPage from '@/templates/default.astro';
 import pageFetch from '@/utils/page.fetch';
 
-const data = await pageFetch({ slug: '/404', lang: 'pl' });
+const data = await pageFetch({ slug: `${getLangPrefix('pl')}/404`, lang: 'pl' });
 ---
 
 {data && <DefaultPage {...data} />}

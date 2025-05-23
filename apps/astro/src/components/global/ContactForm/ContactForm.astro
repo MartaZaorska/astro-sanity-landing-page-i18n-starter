@@ -20,7 +20,8 @@ export const ContactFormQuery = `
       }
     },
     "email": coalesce(*[_type == "page" && slug.current == $slug][0].localSettings.email, *[_type == "global" && language == $lang][0].email),
-    "tel": coalesce(*[_type == "page" && slug.current == $slug][0].localSettings.tel, *[_type == "global" && language == $lang][0].tel)
+    "tel": coalesce(*[_type == "page" && slug.current == $slug][0].localSettings.tel, *[_type == "global" && language == $lang][0].tel),
+    "privacyPolicySlug": *[_type == "PrivacyPolicy_Page" && language == $lang][0].slug.current
   },
 `;
 
@@ -41,10 +42,11 @@ export type Props = {
     };
   };
   email: string;
-  tel: string;
+  tel?: string;
+  privacyPolicySlug: string;
 };
 
-const { index, sectionId, heading, paragraph, formStates, email, tel, lang } = Astro.props;
+const { index, sectionId, heading, paragraph, formStates, email, tel, lang, privacyPolicySlug } = Astro.props;
 const formData = useTranslations(lang)('form');
 ---
 
@@ -59,21 +61,16 @@ const formData = useTranslations(lang)('form');
     />
     <PortableText value={paragraph} />
     <div class='tel-email'>
-      <a
-        class='link'
-        href={`tel:${tel}`}
-        >{tel}</a
-      >
-      <a
-        class='link'
-        href={`mailto:${email}`}
-        >{email}</a
-      >
+      {tel && (
+        <a class='link'href={`tel:${tel}`}>{tel}</a>
+      )}
+      <a class='link' href={`mailto:${email}`}>{email}</a>
     </div>
   </header>
   <Form
     client:load
     lang={lang}
+    privacyPolicySlug={privacyPolicySlug}
   >
     <Button
       class='submit'

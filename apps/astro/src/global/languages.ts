@@ -1,5 +1,6 @@
 export const LANGUAGES = ['pl', 'en'] as const;
 export type Language = (typeof LANGUAGES)[number];
+export const DEFAULT_LANGUAGE: Language = 'pl';
 
 const translations = {
   pl: {
@@ -25,7 +26,6 @@ const translations = {
       legal: {
         labelFirst: 'Wyrażam zgodę na',
         labelSecond: 'politykę prywatności',
-        link: '/polityka-prywatnosci',
         required: 'Zgoda jest wymagana',
       },
       email: {
@@ -126,7 +126,6 @@ const translations = {
       legal: {
         labelFirst: 'I agree to',
         labelSecond: 'privacy policy',
-        link: '/en/privacy-policy',
         required: 'Legal consent is required',
       },
       email: {
@@ -215,4 +214,23 @@ export function useTranslations<T extends keyof typeof translations>(lang: T) {
   return function t<K extends keyof (typeof translations)[T]>(key: K) {
     return translations[lang][key];
   };
+}
+
+/**
+ * Returns the language URL prefix for routing purposes.
+ *
+ * Choose one of the two return statements below depending on your i18n strategy:
+ *
+ * 1. Require prefix for all languages (e.g. /en, /pl):
+ *    return `/${lang}`;
+ *
+ * 2. Require prefix only for non-default languages (e.g. / for default):
+ *    return lang === DEFAULT_LANGUAGE ? '' : `/${lang}`;
+ */
+export function getLangPrefix(lang: Language): string {
+  // Strategy 1: require prefix for all languages
+  //return `/${lang}`;
+
+  // Strategy 2: require prefix only for non-default language
+  return lang === DEFAULT_LANGUAGE ? '' : `/${lang}`;
 }

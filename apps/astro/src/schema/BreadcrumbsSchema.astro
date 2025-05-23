@@ -1,5 +1,5 @@
 ---
-import { type Language, useTranslations } from '@/global/languages';
+import { type Language, useTranslations, getLangPrefix } from '@/global/languages';
 
 type Props = {
   data?: {
@@ -12,9 +12,11 @@ type Props = {
 const { lang, data = [] } = Astro.props;
 const t = useTranslations(lang);
 
+const defaultPath = `${getLangPrefix(lang) || '/'}`;
+
 const breadcrumbsData =
-  data.length === 0 || data[0].path !== '/'
-    ? [{ path: `/${lang === 'pl' ? '' : lang}`, name: t('breadcrumbsName') }, ...data]
+  data.length === 0 || data[0].path !== defaultPath
+    ? [{ path: defaultPath, name: t('breadcrumbsName') }, ...data]
     : data;
 
 const schema = {

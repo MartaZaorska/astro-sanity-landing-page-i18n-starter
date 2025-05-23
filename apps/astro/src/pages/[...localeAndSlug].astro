@@ -1,5 +1,5 @@
 ---
-import { getLocaleFromSlug } from '@/global/languages';
+import { getLocaleFromSlug, getLangPrefix } from '@/global/languages';
 import PrivacyPolicy, { PrivacyPolicyPageQuery, type PrivacyPolicyPageProps } from '@/templates/privacy-policy.astro';
 import DefaultPage from '@/templates/default.astro';
 import sanityFetch from '@/utils/sanity.fetch';
@@ -18,6 +18,9 @@ export async function getStaticPaths() {
 const { localeAndSlug = '' } = Astro.params;
 const slug = `/${localeAndSlug}`;
 const lang = getLocaleFromSlug(slug);
+const langPrefix = getLangPrefix(lang);
+
+if(!slug.startsWith(langPrefix)) return Astro.rewrite(`${langPrefix}/404`);
 
 type AdditionalQueryProps = PrivacyPolicyPageProps;
 
@@ -29,7 +32,7 @@ const data = await pageFetch<AdditionalQueryProps>({
   `,
 });
 
-if (!data) return Astro.rewrite(lang !== 'pl' ? `/${lang}/404` : '/404');
+if (!data) return Astro.rewrite(`${langPrefix}/404`);
 
 const pages: Record<string, any> = {
   PrivacyPolicy_Page: PrivacyPolicy,

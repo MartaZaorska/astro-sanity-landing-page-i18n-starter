@@ -1,5 +1,5 @@
 ---
-import { type Language, useTranslations, LANGUAGES } from '@/global/languages';
+import { type Language, useTranslations, LANGUAGES, getLangPrefix } from '@/global/languages';
 import type { HTMLAttributes } from 'astro/types';
 
 type Props = {
@@ -52,7 +52,7 @@ const languageData = useTranslations(lang)('language');
     {
       LANGUAGES.map(locale => (
         <a
-          href={alternates.find(item => item.lang === locale)?.url || (locale === 'pl' ? '/' : `/${locale}`)}
+          href={alternates.find(item => item.lang === locale)?.url || `${getLangPrefix(lang) || '/'}`}
           aria-current={lang === locale ? 'page' : undefined}
           lang={locale}
         >

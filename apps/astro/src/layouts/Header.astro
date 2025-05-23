@@ -1,5 +1,5 @@
 ---
-import { type Language, useTranslations } from '@/global/languages';
+import { type Language, useTranslations, getLangPrefix } from '@/global/languages';
 import sanityFetch from '@/utils/sanity.fetch';
 import imageToInlineSvg from '@/utils/image-to-inline-svg';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher.astro';
@@ -88,7 +88,7 @@ const svgContent = annotation?.icon ? await imageToInlineSvg(annotation.icon) : 
 <header class='Header'>
   <div class='max-width'>
     <a
-      href={`/${lang === 'pl' ? '' : lang}`}
+      href={`${getLangPrefix(lang) || '/'}`}
       aria-label={headerData.logoAriaLabel}
       class='logo'
     >
@@ -357,11 +357,11 @@ const svgContent = annotation?.icon ? await imageToInlineSvg(annotation.icon) : 
   const overlay = header.querySelector<HTMLDivElement>('.overlay')!;
   const nav = header.querySelector('nav')!;
 
-  menuButton.addEventListener('click', () => toggleMenu(header.dataset.opened === 'true'));
+  if(menuButton) menuButton.addEventListener('click', () => toggleMenu(header.dataset.opened === 'true'));
 
-  overlay.addEventListener('click', () => toggleMenu(true));
+  if(overlay) overlay.addEventListener('click', () => toggleMenu(true));
 
-  nav.addEventListener('focusout', () => {
+  if(nav) nav.addEventListener('focusout', () => {
     const isFocus = !!document.querySelector('.Header:focus-within');
     if (!isFocus) toggleMenu(true);
   });

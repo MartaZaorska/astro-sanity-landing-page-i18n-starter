@@ -16,7 +16,7 @@ export const localizedPaths: Record<Page, Record<Language, string>> = {
     en: '/en/404',
   },
   page: {
-    pl: '',
+    pl: '/',
     en: '/en',
   },
 };
