@@ -1,9 +1,7 @@
 import { LinkIcon } from 'lucide-react';
 import { defineField } from 'sanity';
 import { CustomInput } from './CustomInput';
-import { getLinkFields } from '../link';
-
-type LinkTypes = 'external' | 'internal' | 'anchor';
+import { getLinkFields, type LinkTypes } from '../link';
 
 type PortableTextPropsTypes = {
   name?: string;

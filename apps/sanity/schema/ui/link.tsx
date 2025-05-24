@@ -4,7 +4,7 @@ import { filterReferences } from '../../utils/filter-references';
 import { validateReferenceLanguage } from '../../utils/validate-reference-language';
 import { isValidUrl } from '../../utils/is-valid-url';
 
-type LinkTypes = 'external' | 'internal' | 'anchor';
+export type LinkTypes = 'external' | 'internal' | 'anchor';
 
 const generateDescription = (linkTypes: LinkTypes[]) => {
   const descriptions = {

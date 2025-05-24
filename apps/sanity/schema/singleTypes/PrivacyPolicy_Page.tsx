@@ -1,14 +1,19 @@
 import { defineField } from 'sanity';
 import { LockKeyholeIcon } from 'lucide-react';
 import { PortableText } from '../ui/PortableText';
-import { defineSingletonPage } from '../../templates/singletonPage';
+import { definePage } from '../../templates/page';
+import { localizedPaths } from '../../structure/languages';
+import { defineSlugForDocument } from '../../utils/define-slug-for-document';
 
-export default defineSingletonPage({
+export default definePage({
   name: 'PrivacyPolicy_Page',
   title: 'Privacy Policy',
   icon: LockKeyholeIcon,
   withComponents: false,
   additionalFields: [
+    ...defineSlugForDocument({
+      slugs: localizedPaths['PrivacyPolicy_Page'],
+    }).map(field => ({ ...field, group: 'content' })),
     defineField({
       name: 'heading',
       type: 'Heading',

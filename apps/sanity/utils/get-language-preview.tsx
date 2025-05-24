@@ -1,3 +1,4 @@
+import { LanguagesIcon } from 'lucide-react';
 import { type Language, useTranslations } from '../structure/languages';
 
 export const getLanguageIcon = (language: Language) => (
@@ -6,10 +7,18 @@ export const getLanguageIcon = (language: Language) => (
   </span>
 );
 
-export const getLanguagePreview = ({ language, title }: { language: Language; title: string }) => {
+export const getLanguagePreview = ({
+  title,
+  subtitle,
+  language,
+}: {
+  title: string;
+  subtitle?: string;
+  language: Language;
+}) => {
   return {
     title,
-    subtitle: language ? useTranslations(language)('label') : '',
-    media: () => getLanguageIcon(language),
+    subtitle: subtitle ? subtitle : language ? useTranslations(language)('label') : '',
+    media: language ? () => getLanguageIcon(language) : <LanguagesIcon size={15} />,
   };
 };

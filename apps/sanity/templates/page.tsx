@@ -1,14 +1,16 @@
-import { type FieldDefinition, defineType, defineField } from 'sanity';
+import { type FieldDefinition, defineType, defineField, type FieldGroupDefinition } from 'sanity';
 import { FileTextIcon, SearchIcon, type LucideIcon } from 'lucide-react';
-import { defineSlugForDocument } from '../utils/define-slug-for-document';
-import { getLanguagePreview } from '../utils/get-language-preview';
-import { localizedPaths, type Page } from '../structure/languages';
+import { getLanguageIcon } from '../utils/get-language-preview';
+
+type Page = 'PrivacyPolicy_Page' | 'NotFound_Page' | 'page';
 
 type Props = {
-  name: Exclude<Page, 'page'>;
+  name: Page;
   title: string;
   icon: LucideIcon | React.FC | string;
   withComponents?: boolean;
+  useLanguageIconInPreview?: boolean;
+  additionalGroups?: Array<FieldGroupDefinition>;
   additionalFields?: FieldDefinition<
     | 'string'
     | 'number'
@@ -33,11 +35,13 @@ type Props = {
   >[];
 };
 
-export const defineSingletonPage = ({
+export const definePage = ({
   name,
   title,
   icon,
   withComponents = true,
+  useLanguageIconInPreview = true,
+  additionalGroups = [],
   additionalFields = [],
 }: Props) =>
   defineType({
@@ -53,9 +57,6 @@ export const defineSingletonPage = ({
         readOnly: true,
         hidden: true,
       }),
-      ...defineSlugForDocument({
-        slugs: localizedPaths[name],
-      }).map(field => ({ ...field, group: 'content' })),
       ...additionalFields,
       ...(withComponents
         ? [
@@ -85,12 +86,21 @@ export const defineSingletonPage = ({
         title: 'SEO',
         icon: () => <SearchIcon size={18} />,
       },
+      ...additionalGroups,
     ],
     preview: {
       select: {
+        title: 'name',
+        subtitle: 'slug.current',
+        icon: 'icon',
+        media: 'image',
         language: 'language',
-        name: 'name',
       },
-      prepare: ({ name, language }) => getLanguagePreview({ title: name, language }),
+      prepare: ({ title, subtitle, icon, media, language }) => ({
+        title,
+        subtitle,
+        icon,
+        media: useLanguageIconInPreview && language ? () => getLanguageIcon(language) : media,
+      }),
     },
   });
