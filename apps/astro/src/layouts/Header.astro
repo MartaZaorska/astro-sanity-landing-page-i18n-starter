@@ -51,7 +51,7 @@ const { annotation, links } = await sanityFetch<{
           false
         ),
         "href": select(
-          linkType == "internal" => internal -> slug.current,
+          linkType == "internal" => internal -> slug.current + coalesce(anchor, ""),
           linkType == "anchor" => anchor,
           "#"
         ),
