@@ -1,5 +1,6 @@
 export const LANGUAGES = ['pl', 'en'] as const;
 export type Language = (typeof LANGUAGES)[number];
+
 export const DEFAULT_LANGUAGE: Language = 'pl';
 
 const translations = {
@@ -207,7 +208,7 @@ const translations = {
 
 export function getLocaleFromSlug(slug: string) {
   const [, lang] = slug.split('/');
-  return (LANGUAGES.find(language => lang === language) ? lang : 'pl') as Language;
+  return (LANGUAGES.find(language => lang === language) ? lang : DEFAULT_LANGUAGE) as Language;
 }
 
 export function useTranslations<T extends keyof typeof translations>(lang: T) {
