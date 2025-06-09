@@ -43,8 +43,8 @@ export const POST: APIRoute = async ({ request }) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: `${messageTemplate.fromLabel} <formularz@martaz.click>`,
-        to: 'marta.zaorska2@gmail.com',
+        from: 'Acme <onboarding@resend.dev>', //`${messageTemplate.fromLabel} <formularz@sending.nazwa.pl>`
+        to: 'marta.zaorska2@gmail.com', //'admin@nazwa.pl'
         reply_to: email,
         subject: messageTemplate.subject,
         html: HTMLTemplate,
@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: `${messageTemplate.fromLabel} <formularz@martaz.click>`,
+        from: 'Acme <onboarding@resend.dev>', //`${messageTemplate.fromLabel} <formularz@sending.nazwa.pl>`
         to: email,
         subject: messageTemplate.userConfirmationSubject,
         html: userConfirmationHTMLTemplate,
