@@ -27,7 +27,8 @@ export const POST: APIRoute = async ({ request }) => {
   const messageTemplate = useTranslations(lang)('messageTemplate');
 
   try {
-    if (!REGEX.email.test(email) || !message || !legal) throw new HTTPError('Missing required fields');
+    if (!REGEX.email.test(email) || !message || !legal)
+      throw new HTTPError('Missing required fields');
 
     const HTMLTemplate = `
       <p>${messageTemplate.emailLabel}: <b>${email}</b></p>
@@ -42,8 +43,8 @@ export const POST: APIRoute = async ({ request }) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'Acme <onboarding@resend.dev>', //`${messageTemplate.fromLabel} <formularz@sending.nazwa.pl>`
-        to: 'marta.zaorska2@gmail.com', //'admin@nazwa.pl'
+        from: `${messageTemplate.fromLabel} <formularz@martaz.click>`,
+        to: 'marta.zaorska2@gmail.com',
         reply_to: email,
         subject: messageTemplate.subject,
         html: HTMLTemplate,
@@ -62,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'Acme <onboarding@resend.dev>', //`${messageTemplate.fromLabel} <formularz@sending.nazwa.pl>`
+        from: `${messageTemplate.fromLabel} <formularz@martaz.click>`,
         to: email,
         subject: messageTemplate.userConfirmationSubject,
         html: userConfirmationHTMLTemplate,
